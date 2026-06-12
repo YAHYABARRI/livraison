@@ -54,6 +54,7 @@ public class SecurityConfig {
                 .requestMatchers("/api/parcels/**").hasAuthority("CLIENT")
                 .requestMatchers("/api/driver/**").hasAuthority("DRIVER")
                 .requestMatchers("/api/admin/**").hasAuthority("ADMIN")
+                .requestMatchers("/api/reports/**").hasAuthority("ADMIN")
                 .anyRequest().authenticated()
             )
             .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);

@@ -1,15 +1,16 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import { 
-  LayoutDashboard, 
-  PlusCircle, 
-  Package, 
-  User, 
-  Users, 
-  Truck, 
+import {
+  LayoutDashboard,
+  PlusCircle,
+  Package,
+  User,
+  Users,
+  Truck,
   ShieldCheck,
-  Settings
+  Settings,
+  FileText
 } from 'lucide-react';
 
 const Sidebar = () => {
@@ -40,6 +41,7 @@ const Sidebar = () => {
         { path: '/dashboard', label: 'Tableau de bord', icon: <LayoutDashboard size={20} /> },
         { path: '/admin/users', label: 'Utilisateurs', icon: <Users size={20} /> },
         { path: '/admin/parcels', label: 'Gestion Colis', icon: <Package size={20} /> },
+        { path: '/admin/reports', label: 'Rapports & Factures', icon: <FileText size={20} /> },
         { path: '/profile', label: 'Mon Profil', icon: <User size={20} /> },
         { path: '/settings', label: 'Paramètres', icon: <Settings size={20} /> },
       ];
@@ -62,10 +64,9 @@ const Sidebar = () => {
               key={link.path}
               to={link.path}
               className={({ isActive }) =>
-                `flex items-center gap-3 px-3 py-3 rounded-xl text-sm font-semibold transition-all duration-150 cursor-pointer ${
-                  isActive
-                    ? 'bg-primary-50 dark:bg-slate-900 text-primary-600 dark:text-primary-400'
-                    : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900/50 hover:text-slate-900 dark:hover:text-white'
+                `flex items-center gap-3 px-3 py-3 rounded-xl text-sm font-semibold transition-all duration-150 cursor-pointer ${isActive
+                  ? 'bg-primary-50 dark:bg-slate-900 text-primary-600 dark:text-primary-400'
+                  : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900/50 hover:text-slate-900 dark:hover:text-white'
                 }`
               }
             >

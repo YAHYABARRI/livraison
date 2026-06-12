@@ -14,6 +14,7 @@ import Settings from './pages/Settings';
 import TrackParcel from './pages/TrackParcel';
 import AdminUsers from './pages/Admin/AdminUsers';
 import AdminParcels from './pages/Admin/AdminParcels';
+import AdminReports from './pages/Admin/AdminReports';
 import DriverParcels from './pages/Driver/DriverParcels';
 
 // Wrapper pour sécuriser les routes
@@ -127,6 +128,14 @@ function App() {
               element={
                 <ProtectedRoute allowedRoles={['ADMIN']}>
                   <AdminParcels />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/admin/reports"
+              element={
+                <ProtectedRoute allowedRoles={['ADMIN']}>
+                  <AdminReports />
                 </ProtectedRoute>
               }
             />

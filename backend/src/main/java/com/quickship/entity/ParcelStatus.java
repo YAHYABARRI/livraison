@@ -7,5 +7,6 @@ public enum ParcelStatus {
     IN_TRANSIT,        // En transit
     ARRIVED_AT_HUB,    // Arrivé au centre de tri
     OUT_FOR_DELIVERY,  // En cours de livraison
-    DELIVERED          // Livré
+    DELIVERED,         // Livré
+    RETURNED           // Retourné
 }

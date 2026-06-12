@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:8080/api';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080/api';
 
 const api = axios.create({
   baseURL: API_URL,
@@ -30,14 +30,14 @@ api.interceptors.response.use(
     if (error.response && error.response.status === 401) {
       console.warn("Session expirée ou non autorisée - Déconnexion automatique");
       localStorage.removeItem('token');
-      
-      const isPublicPath = 
-        window.location.pathname === '/' || 
-        window.location.pathname === '/login' || 
-        window.location.pathname === '/register' || 
+
+      const isPublicPath =
+        window.location.pathname === '/' ||
+        window.location.pathname === '/login' ||
+        window.location.pathname === '/register' ||
         window.location.pathname === '/forgot-password' ||
         window.location.pathname.startsWith('/track');
-        
+
       if (!isPublicPath) {
         window.location.href = '/login?expired=true';
       }
@@ -157,6 +157,42 @@ export const adminService = {
     const response = await api.get('/admin/stats');
     return response.data;
   },
+};
+
+// Endpoints Rapports et Factures PDF
+export const reportService = {
+  getStats: async () => {
+    const response = await api.get('/reports/stats');
+    return response.data;
+  },
+  getDailyPdf: async () => {
+    const response = await api.get('/reports/daily', { responseType: 'blob' });
+    return response.data;
+  },
+  getWeeklyPdf: async () => {
+    const response = await api.get('/reports/weekly', { responseType: 'blob' });
+    return response.data;
+  },
+  getMonthlyPdf: async () => {
+    const response = await api.get('/reports/monthly', { responseType: 'blob' });
+    return response.data;
+  },
+  getCustomPdf: async (params) => {
+    const response = await api.get('/reports/custom', { params, responseType: 'blob' });
+    return response.data;
+  },
+  getMultiClientsPdf: async (data) => {
+    const response = await api.post('/reports/by-clients', data, { responseType: 'blob' });
+    return response.data;
+  },
+  getDriverPdf: async (driverId, params) => {
+    const response = await api.get(`/reports/by-deliveryman/${driverId}`, { params, responseType: 'blob' });
+    return response.data;
+  },
+  getClientPdf: async (clientId, params) => {
+    const response = await api.get(`/reports/by-client/${clientId}`, { params, responseType: 'blob' });
+    return response.data;
+  }
 };
 
 export default api;

@@ -36,6 +36,7 @@ const Layout = ({ children }) => {
         { path: '/dashboard', label: 'Tableau de bord' },
         { path: '/admin/users', label: 'Utilisateurs' },
         { path: '/admin/parcels', label: 'Gestion Colis' },
+        { path: '/admin/reports', label: 'Rapports & Factures' },
         { path: '/profile', label: 'Mon Profil' },
         { path: '/settings', label: 'Paramètres' },
       ];
@@ -70,8 +71,8 @@ const Layout = ({ children }) => {
         {mobileSidebarOpen && (
           <div className="md:hidden fixed inset-0 z-50 flex">
             {/* Backdrop */}
-            <div 
-              className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm" 
+            <div
+              className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm"
               onClick={() => setMobileSidebarOpen(false)}
             ></div>
 
@@ -84,7 +85,7 @@ const Layout = ({ children }) => {
                     <X size={20} />
                   </button>
                 </div>
-                
+
                 <div className="space-y-2">
                   {links.map((link) => (
                     <Link
